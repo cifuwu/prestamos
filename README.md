@@ -22,3 +22,7 @@ python3 manage.py migrate
 python3 manage.py runserver
 
 # si todo sale bien, la app debería correr en http://localhost:8000 
+
+# si modificas las clases, debes primero hacer las migraciones con:
+
+python3 manage.py makemigrations
