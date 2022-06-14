@@ -1,0 +1,7 @@
+# carpeta .venv del entorno virtual
+
+.venv
+
+#archivo sqlite3
+
+db.sqlite3
