@@ -70,6 +70,19 @@ def buscar(request):
 
     busqueda = request.POST.get('busqueda')
 
+    def normalize(s):
+        replacements = (
+            ("á", "a"),
+            ("é", "e"),
+            ("í", "i"),
+            ("ó", "o"),
+            ("ú", "u"),
+        )
+        for a, b in replacements:
+            s = s.replace(a, b).replace(a.upper(), b.upper())
+        return s
+    
+    busqueda = normalize(busqueda)
 
     items = item.objects.filter(Q(nombre__icontains = busqueda))
 
