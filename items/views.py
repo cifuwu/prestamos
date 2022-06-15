@@ -1,6 +1,8 @@
 from datetime import datetime
+from nis import cat
 from pickle import NONE
 from tkinter import ON
+from tkinter.tix import Tree
 from typing_extensions import Self
 from xml.etree.ElementTree import Element
 from django.http import HttpResponse, HttpResponseRedirect
@@ -10,7 +12,7 @@ from django.db.models import Avg, Count, Q
 from django.urls import reverse
 from django.utils import timezone
 
-from items.models import item
+from items.models import item , categoria, usuario, prestamo
 
 
 # Create your views here.
@@ -20,9 +22,22 @@ def index(request):
     print('Request para index')
 
     items = item.objects.order_by("disponible")
+    usuarios = usuario.objects.all()
+    prestamos = prestamo.objects.all()
+    categorias = categoria.objects.all()
 
+    arreglo = []
+    for caca in items:
+        if caca.disponible == False:
+            prestamo_aux = prestamos.filter(item__id = caca.id, devuelto = False).first()
+            xd = caca , prestamo_aux.usuario, prestamo_aux.fecha_prestamo
+            arreglo.append(xd)
+        
+        else:
+            xd = caca, '',''
+            arreglo.append(xd)
 
-    return render(request, 'index.html', {'items': items})
+    return render(request, 'index.html', {'items': arreglo, 'usuarios':usuarios, 'prestamos':prestamos, 'categorias':categorias})
 
 
 
@@ -52,17 +67,33 @@ def filtro(request):
 
 
     if (chek_3 == None and chek_4 != None):
-        items = items.filter(categoria = 'juego')
+        items = items.filter(categoria__categoria = 'juego')
 
     elif (chek_3 != None and chek_4 == None):
-        items = items.filter(categoria = 'computador')
+        items = items.filter(categoria__categoria = 'computador')
 
     elif (chek_3 == None and chek_4 == None):
         items = items.filter(categoria = '')
+
+    usuarios = usuario.objects.all()
+    prestamos = prestamo.objects.all()
+    categorias = categoria.objects.all()
+
+    arreglo = []
+    for caca in items:
+        if caca.disponible == False:
+            prestamo_aux = prestamos.filter(item__id = caca.id, devuelto = False).first()
+            xd = caca , prestamo_aux.usuario, prestamo_aux.fecha_prestamo
+            arreglo.append(xd)
+        
+        else:
+            xd = caca, '',''
+            arreglo.append(xd)
+    
     
 
 
-    return render(request, 'index.html', {'items': items, 'casillas': casillas})
+    return render(request, 'index.html', {'items': arreglo, 'casillas': casillas, 'usuarios':usuarios, 'prestamos':prestamos, 'categorias':categorias})
 
 
 def buscar(request):
@@ -86,31 +117,68 @@ def buscar(request):
 
     items = item.objects.filter(Q(nombre__icontains = busqueda))
 
+    usuarios = usuario.objects.all()
+    prestamos = prestamo.objects.all()
+    categorias = categoria.objects.all()
 
-    return render(request, 'index.html', {'items': items})
+    arreglo = []
+    for caca in items:
+        if caca.disponible == False:
+            prestamo_aux = prestamos.filter(item__id = caca.id, devuelto = False).first()
+            xd = caca , prestamo_aux.usuario, prestamo_aux.fecha_prestamo
+            arreglo.append(xd)
+        
+        else:
+            xd = caca, '',''
+            arreglo.append(xd)
+
+    return render(request, 'index.html', {'items': arreglo, 'usuarios':usuarios, 'prestamos':prestamos, 'categorias':categorias})
+
 
 
 def prestar(request):
     print('Request para prestar')
 
     item_id= request.POST.get('itemid')
-    nombre = request.POST.get('user_name')
+    rol = request.POST.get('user_name')
 
-    #print("id del item: ",item_id)
+    print("id del item: ",item_id)
 
     elemento = get_object_or_404(item, pk=item_id)
 
-    print(elemento)
+    user = usuario.objects.filter(rol=rol).first()
 
-    elemento.disponible = False
-    elemento.fecha_prestamo = timezone.now()
-    elemento.usuario = nombre
-    item.save(elemento)
+    if(user):
+        print(elemento)
+        print(user)
 
+        prestamo_ = prestamo(usuario = user, item = elemento, fecha_prestamo = timezone.now())
+        prestamo_.save()
 
-    items = item.objects.order_by("disponible")
+        elemento.disponible = False
+        item.save(elemento)
 
-    return render(request, 'index.html', {'items': items})
+    else:
+        items = item.objects.order_by("disponible")
+        usuarios = usuario.objects.all()
+        prestamos = prestamo.objects.all()
+        categorias = categoria.objects.all()
+
+        arreglo = []
+        for caca in items:
+            if caca.disponible == False:
+                prestamo_aux = prestamos.filter(item__id = caca.id, devuelto = False).first()
+                xd = caca , prestamo_aux.usuario, prestamo_aux.fecha_prestamo
+                arreglo.append(xd)
+            
+            else:
+                xd = caca, '',''
+                arreglo.append(xd)
+
+        return render(request, 'index.html', {'items': arreglo, 'usuarios':usuarios, 'prestamos':prestamos, 'categorias':categorias, 'mensaje_alerta':'usuario no encontrado'})
+
+    return HttpResponseRedirect(reverse('index'))
+
 
 
 def devolver(request):
@@ -118,13 +186,36 @@ def devolver(request):
 
     item_id= request.POST.get('itemidd')
     elemento = get_object_or_404(item, pk=item_id)
+    elemento_prestamo = prestamo.objects.filter(item=elemento, devuelto = False).first()
 
+    elemento_prestamo.fecha_devuelto = timezone.now()
+    elemento_prestamo.devuelto = True
+    prestamo.save(elemento_prestamo)
 
     elemento.disponible = True
     item.save(elemento)
 
-    items = item.objects.order_by("disponible")
+    return HttpResponseRedirect(reverse('index'))
 
-    return render(request, 'index.html', {'items': items})
+def agregar(request):
+    print("request agregar")
+
+    return(render(request, 'agregar_item.html'))
+
+def agregar_item(request):
+    print("request agregar_item")
+
+    nombre = request.POST.get('nombre')
+    codigo = request.POST.get('codigo')
+    categoria_ = request.POST.get('categoria')
+    description = request.POST.get('comentario')
+
+    categoria_aux = categoria.objects.filter(categoria=categoria_).first()
+
+    item_ = item(nombre = nombre, codigo=codigo, categoria = categoria_aux, description = description, disponible=True)
+    item_.save()
+
+    mensaje = str(nombre)+ ' agregado correctamente '
 
 
+    return(render(request, 'agregar_item.html', {'mensaje':mensaje}))

@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>primos</title>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'fonts/fontawesome-all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'fonts/material-icons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/Footer-Basic.css' %}">
+    <link rel="stylesheet" href="{% static 'css/Profile-Edit-Form-1.css' %}">
+    <link rel="stylesheet" href="{% static 'css/Profile-Edit-Form.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+
+
+
+<body style="background: var(--bs-gray-dark);">
+
+    <!--------------------        BARRA DE NAVEGACION           ------------------------->
+
+    <nav class="navbar navbar-light navbar-expand-md"
+        style="margin-top: 0px;margin-bottom: 0px;background: var(--bs-teal);padding-top: 19px;padding-bottom: 19px;">
+        <div class="container-fluid"><a class="navbar-brand" href="{% url 'index' %}" style="margin-left: 30px;">sistema
+                de prestamos<i class="fas fa-cat fs-3" style="margin-left: 6px;"></i></a><button
+                data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span
+                    class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse d-md-flex justify-content-md-end" id="navcol-1">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">prestamos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'agregar' %}">agregar item</a></li>
+                    <li class="nav-item"></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">usuarios</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!--------------------        FIN BARRA DE NAVEGACION           ------------------------->
+
+    {% block content %}
+    {% endblock %}
+
+
+    <footer class="text-center" style="
+                                        position: absolute;
+                                        bottom: 0;
+                                        width: 100%;
+                                        height: 40px;">
+        <div class="container text-muted py-4 py-lg-5">
+            <hr style="margin-bottom: 35px;">
+            <p class="mb-0" style="color: rgb(255,255,255);">hecho con ❤️ por cifu</p>
+        </div>
+    </footer>
+
+
+
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/Profile-Edit-Form.js' %}"></script>
+    {% block jquery %}
+    {% endblock %}
+</body>
+
+</html>
