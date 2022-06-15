@@ -128,12 +128,16 @@
         <div class="col-md-9">
             {% if mensaje_alerta %}
             <div class="text-center d-xl-flex justify-content-xl-center">
-                <div class="alert alert-success" role="alert" style="background: var(--bs-danger);color: var(--bs-body-bg);border-style: none;"><span><strong>usuario no encontrado</strong></span></div>
+                <div class="alert alert-success" role="alert"
+                    style="background: var(--bs-danger);color: var(--bs-body-bg);border-style: none;">
+                    <span><strong>usuario no encontrado</strong></span></div>
             </div>
             {% endif%}
             {% if mensaje_prestado %}
             <div class="text-center d-xl-flex justify-content-xl-center">
-                <div class="alert alert-success" role="alert" style="background: var(--bs-teal);color: var(--bs-body-color);border-style: none;"><span><strong>usuario no encontrado</strong></span></div>
+                <div class="alert alert-success" role="alert"
+                    style="background: var(--bs-teal);color: var(--bs-body-color);border-style: none;">
+                    <span><strong>usuario no encontrado</strong></span></div>
             </div>
             {% endif%}
             <div class="table-responsive" style="border-radius: 5px;border: 1px none var(--bs-body-bg);">
@@ -190,14 +194,17 @@
                                     data-bs-target="#modal-{{item.0.id}}" data-bs-toggle="modal">prestar</button>
                                 {% else %}
                                 <form method="POST" action="{% url 'devolver' %}">{% csrf_token %}
-                                    <input id="itemidd" name="itemidd" type="hidden" value="{{item.0.id}}"
-                                        placeholder="{{item.0.id}}">
+                                    <input id="itemidd" name="itemidd" type="hidden" value="{{item.0.id}}" placeholder="{{item.0.id}}">
                                     <button class="btn btn-danger" type="submit">devolver</button>
                                 </form>
                                 {% endif %}
-                                <button class="btn btn-secondary" type="button"
-                                    style="text-align: center;padding-left: 18px;padding-right: 18px;margin-left: 10px;"><i
-                                        class="fas fa-info-circle fs-5"></i></button>
+                                <form method="POST" action="{% url 'item_' item.0.id %}">{% csrf_token %}
+                                    <input id="itemidd" name="itemidd" type="hidden" value="{{item.0.id}}" placeholder="{{item.0.id}}">
+                                    <button class="btn btn-secondary" type="submit"
+                                        style="text-align: center;padding-left: 18px;padding-right: 18px;margin-left: 10px;">
+                                        <i class="fas fa-info-circle fs-5"></i>
+                                    </button>
+                                </form>
                             </td>
                         </tr>
 
@@ -213,8 +220,8 @@
                                     <div class="modal-body">
                                         <p>usuario a prestar</p>
                                         <form method="POST" action="{% url 'prestar' %}">{% csrf_token %}
-                                            <input class="form-control" type="text" placeholder="nombre de usuario"
-                                                name="user_name" id="user_name" required>
+                                            <input class="form-control" type="text" placeholder="rut o rol"
+                                                name="user_name" id="user_name" required >
                                             <input id="itemid" name="itemid" type="hidden" value="{{item.0.id}}"
                                                 placeholder="{{item.0.id}}">
                                     </div>

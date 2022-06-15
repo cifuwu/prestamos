@@ -219,3 +219,13 @@ def agregar_item(request):
 
 
     return(render(request, 'agregar_item.html', {'mensaje':mensaje}))
+
+def item_(request, id):
+    print("request de item")
+
+    item_ = get_object_or_404(item, pk=id)
+    prestamos = prestamo.objects.filter(item=item_).order_by("-fecha_prestamo")
+
+
+
+    return(render(request, 'item.html', {'item':item_, 'prestamos':prestamos}))

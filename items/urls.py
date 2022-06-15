@@ -9,4 +9,5 @@ urlpatterns = [
     path('devolver', views.devolver, name='devolver'),
     path('agregar', views.agregar, name='agregar'),
     path('agregar_item', views.agregar_item, name='agregar_item'),
+    path('<int:id>/', views.item_, name='item_'),
 ]
