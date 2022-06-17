@@ -22,6 +22,25 @@ from items.models import item , categoria, usuario, prestamo
 def index(request):
     print('Request para index')
 
+
+    #
+    # Descomentar y ejecutar sólo si se deben insertar datos de usuarios desde un .csv que se encuentre en la carpeta raíz
+    #
+    #  arch = open('usuarios.csv')
+
+    # for linea in arch:
+    #     linea = linea.split(',')
+    #     usuario_ = linea[0]
+    #     rut_ = linea[1]
+    #     rol_ = linea[2]
+    #     correo_ = linea[3].replace('\n','')
+
+    #     new_user = usuario(nombre = usuario_, rut=rut_, rol=rol_, correo=correo_)
+    #     new_user.save()
+
+    #     print("\nnombre: " + str(usuario_) + '\n\tcorreo: '+ str(correo_) + '\n\trol: '+ str(rol_)+ '\n\trut: '+ str(rut_))
+
+
     items = item.objects.order_by("disponible")
     usuarios = usuario.objects.all()
     prestamos = prestamo.objects.all()
@@ -294,3 +313,13 @@ def agregar_usuario_(request):
     mensaje = str(nombre), ' agregado correctamente'
 
     return(render(request, 'agregar_usuario.html', {'mensaje':mensaje}))
+
+def busqueda_user(request):
+    busqueda = request.POST.get('busqueda')
+    print('\n\t'+str(busqueda)+'\t\n')
+
+    usuarios = usuario.objects.filter(Q(nombre__icontains = busqueda) | Q(rol__icontains = busqueda) | Q(rut__icontains = busqueda))
+
+
+    
+    return(render(request, 'usuarios.html', {'usuarios':usuarios}))

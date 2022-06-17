@@ -13,5 +13,6 @@ urlpatterns = [
     path('usuarios', views.usuarios, name='usuarios'),
     path('agregar_usuario', views.agregar_usuario, name='agregar_usuario'),
     path('agregar_usuario_', views.agregar_usuario_, name='agregar_usuario_'),
+    path('busqueda_user', views.busqueda_user, name='busqueda_user'),
 ]
 handler404 = 'items.views.view_404'
