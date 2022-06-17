@@ -26,8 +26,8 @@
                         <form class="text-center" method="post" action="{% url 'agregar_usuario_' %}">{% csrf_token %}
                             <div class="mb-3"><input class="form-control" type="text" placeholder="nombre" name="nombre" required></div>
                             <div class="mb-3"><input class="form-control" type="email" name="email" placeholder="Email" required></div>
-                            <div class="mb-3"><input class="form-control" type="text" name="rol" placeholder="rol (sin puntos ni guión)" required></div>
-                            <div class="mb-3"><input class="form-control" type="text" name="rut" placeholder="rut (sin puntos ni guión)" required></div>
+                            <div class="mb-3"><input class="form-control" type="text" name="rol" placeholder="rol (sin puntos y con guión)" required></div>
+                            <div class="mb-3"><input class="form-control" type="text" name="rut" placeholder="rut (sin puntos y con guión)" required></div>
                             <div class="mb-3"><button class="btn btn-success d-block w-100" type="submit" style="margin-top: 25px;">registrar</button></div>
                         </form>
                     </div>

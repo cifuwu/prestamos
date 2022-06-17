@@ -258,7 +258,7 @@
                                     <div class="modal-body">
                                         <p>usuario a prestar</p>
                                         <form method="POST" action="{% url 'prestar' %}">{% csrf_token %}
-                                            <input class="form-control" type="text" placeholder="rut o rol (sin puntos ni guión)"
+                                            <input class="form-control" type="text" placeholder="rol (sin puntos y con guión)"
                                                 name="user_name" id="user_name" required >
                                             <input id="itemid" name="itemid" type="hidden" value="{{item.0.id}}"
                                                 placeholder="{{item.0.id}}">
