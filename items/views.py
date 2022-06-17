@@ -191,7 +191,25 @@ def prestar(request):
 
         return render(request, 'index.html', {'items': arreglo, 'usuarios':usuarios, 'prestamos':prestamos, 'categorias':categorias, 'mensaje_alerta':'usuario no encontrado'})
 
-    return HttpResponseRedirect(reverse('index'))
+    items = item.objects.order_by("disponible")
+    usuarios = usuario.objects.all()
+    prestamos = prestamo.objects.all()
+    categorias = categoria.objects.all()
+
+    arreglo = []
+    for caca in items:
+        if caca.disponible == False:
+            prestamo_aux = prestamos.filter(item__id = caca.id, devuelto = False).first()
+            xd = caca , prestamo_aux.usuario, prestamo_aux.fecha_prestamo
+            arreglo.append(xd)
+            
+        else:
+            xd = caca, '',''
+            arreglo.append(xd)
+
+    mensaje = str(elemento) + ' prestado', str(user)
+
+    return render(request, 'index.html', {'items': arreglo, 'usuarios':usuarios, 'prestamos':prestamos, 'categorias':categorias, 'mensaje_prestado':mensaje})
 
 
 
@@ -243,3 +261,8 @@ def item_(request, id):
 
 
     return(render(request, 'item.html', {'item':item_, 'prestamos':prestamos}))
+
+def view_404(request, exception=None):
+    # make a redirect to homepage
+    # you can use the name of url or just the plain link
+    return HttpResponseRedirect(reverse('index')) # or redirect('name-of-index-url')

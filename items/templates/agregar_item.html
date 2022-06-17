@@ -5,9 +5,8 @@
     <section class="position-relative py-4 py-xl-5" style>
         <div class="container position-relative">
             {% if mensaje %}
-            <div class="text-center d-xl-flex justify-content-xl-center">
-                <div class="alert alert-success" role="alert"
-                    style="background: var(--bs-teal);color: var(--bs-body-color);border-style: none;"><span><strong>{{mensaje }}</strong></span></div>
+            <div class="d-xl-flex justify-content-xl-center">
+                <div class="alert alert-success text-center alert-dismissible" role="alert"><button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button><span><strong>{{mensaje}}</strong></span></div>
             </div>
             {% endif %}
             <div class="row d-flex justify-content-center">

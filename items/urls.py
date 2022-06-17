@@ -11,3 +11,4 @@ urlpatterns = [
     path('agregar_item', views.agregar_item, name='agregar_item'),
     path('<int:id>/', views.item_, name='item_'),
 ]
+handler404 = 'items.views.view_404'

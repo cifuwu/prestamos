@@ -19,7 +19,7 @@
                         style="background: var(--bs-body-bg);border-width: 1px;border-color: var(--bs-body-bg);color: var(--bs-body-bg);margin-top: 10px;margin-bottom: 10px;">
                     <div class="d-flex d-md-flex d-lg-flex justify-content-end justify-content-md-end align-items-md-center justify-content-lg-end"
                         style="margin-top: 15px;padding-bottom: 7px;">
-                        <input class="form-control" type="text" placeholder="busqueda" name="busqueda" id="busqueda">
+                        <input class="form-control" type="text" placeholder="búsqueda" name="busqueda" id="busqueda">
                         <button class="btn btn-primary" type="submit">
                             <i class="fas fa-search"></i>
                         </button>
@@ -156,17 +156,15 @@
 
         <div class="col-md-9">
             {% if mensaje_alerta %}
-            <div class="text-center d-xl-flex justify-content-xl-center">
-                <div class="alert alert-success" role="alert"
-                    style="background: var(--bs-danger);color: var(--bs-body-bg);border-style: none;">
-                    <span><strong>usuario no encontrado</strong></span></div>
+            <div class="d-xl-flex justify-content-xl-end">
+                <div class="alert alert-danger alert-dismissible" role="alert" style="width: 240.398px;text-align: center;margin-right: 60px;"><button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button><span><strong>usuario no encontrado</strong><br /></span></div>
             </div>
             {% endif%}
             {% if mensaje_prestado %}
-            <div class="text-center d-xl-flex justify-content-xl-center">
-                <div class="alert alert-success" role="alert"
-                    style="background: var(--bs-teal);color: var(--bs-body-color);border-style: none;">
-                    <span><strong>usuario no encontrado</strong></span></div>
+            <div class="d-xl-flex justify-content-xl-end">
+                <div class="alert alert-success text-center alert-dismissible" role="alert" style="padding-top: 5px;padding-bottom: 5px;margin-right: 65px;min-width: 255px;"><button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+                    <h3 class="alert-heading">{{mensaje_prestado.0}}</h3><span class="fs-6"><strong>{{mensaje_prestado.1}}</strong></span>
+                </div>
             </div>
             {% endif%}
             <div class="table-responsive" style="border-radius: 5px;border: 1px none var(--bs-body-bg);">
