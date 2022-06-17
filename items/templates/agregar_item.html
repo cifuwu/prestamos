@@ -27,7 +27,7 @@
                         </svg></div>
                         <form class="text-center" method="post" action="{% url 'agregar_item' %}">{% csrf_token %}
                             <div class="mb-3"><input class="form-control" type="text" placeholder="nombre" name="nombre" required></div>
-                            <div class="mb-3"><input class="form-control" type="text" name="codigo" placeholder="codigo (id item)" required></div>
+                            <div class="mb-3"><input class="form-control" type="text" name="codigo" placeholder="código (id item)" required></div>
                             <div class="mb-3">
                             <select class="form-select" name="categoria" required>
                                     
