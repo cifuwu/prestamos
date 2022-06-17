@@ -1,4 +1,5 @@
 from datetime import datetime
+import email
 from nis import cat
 from pickle import NONE
 from tkinter import ON
@@ -249,7 +250,7 @@ def agregar_item(request):
     item_ = item(nombre = nombre, codigo=codigo, categoria = categoria_aux, description = description, disponible=True)
     item_.save()
 
-    mensaje = str(nombre)+ ' agregado correctamente '
+    mensaje = str(nombre), ' agregado correctamente '
 
 
     return(render(request, 'agregar_item.html', {'mensaje':mensaje}))
@@ -268,3 +269,28 @@ def view_404(request, exception=None):
     # make a redirect to homepage
     # you can use the name of url or just the plain link
     return HttpResponseRedirect(reverse('index')) # or redirect('name-of-index-url')
+
+def usuarios(request):
+    usuarios = usuario.objects.all()
+
+    return(render(request, 'usuarios.html', {'usuarios':usuarios}))
+
+def agregar_usuario(request):
+    print("request agregar_usuario")
+
+    return(render(request, 'agregar_usuario.html'))
+
+def agregar_usuario_(request):
+    print("request agregar_usuario")
+
+    nombre = request.POST.get('nombre')
+    email = request.POST.get('email')
+    rol = request.POST.get('rol')
+    rut = request.POST.get('rut')
+
+    user = usuario(nombre = nombre, correo=email, rol=rol, rut=rut)
+    user.save()
+
+    mensaje = str(nombre), ' agregado correctamente'
+
+    return(render(request, 'agregar_usuario.html', {'mensaje':mensaje}))

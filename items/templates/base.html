@@ -29,10 +29,10 @@
                     class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse d-md-flex justify-content-md-end" id="navcol-1">
                 <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">prestamos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">items</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'agregar' %}">agregar item</a></li>
                     <li class="nav-item"></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">usuarios</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'usuarios' %}">usuarios</a></li>
                 </ul>
             </div>
         </div>
@@ -44,7 +44,11 @@
     {% endblock %}
 
 
-    <footer class="text-center" >
+    <footer class="text-center" style="
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 40px;">
         <div class="container text-muted py-4 py-lg-5">
             <hr style="margin-bottom: 35px;">
             <p class="mb-0" style="color: rgb(255,255,255);">hecho con ❤️ por cifu</p>
