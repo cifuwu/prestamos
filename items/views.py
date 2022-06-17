@@ -156,11 +156,13 @@ def prestar(request):
     item_id= request.POST.get('itemid')
     rol = request.POST.get('user_name')
 
+    print('\n\t usuario: '+ str(rol)+'\t\n')
+
     print("id del item: ",item_id)
 
     elemento = get_object_or_404(item, pk=item_id)
 
-    user = usuario.objects.filter(rol=rol).first()
+    user = usuario.objects.filter(Q(rol=rol) | Q(rut=rol)).first()
 
     if(user):
         print(elemento)

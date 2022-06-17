@@ -258,11 +258,13 @@
                                     <div class="modal-body">
                                         <p>usuario a prestar</p>
                                         <form method="POST" action="{% url 'prestar' %}">{% csrf_token %}
-                                            <input class="form-control" type="text" placeholder="rut o rol"
+                                            <input class="form-control" type="text" placeholder="rut o rol (sin puntos ni guión)"
                                                 name="user_name" id="user_name" required >
                                             <input id="itemid" name="itemid" type="hidden" value="{{item.0.id}}"
                                                 placeholder="{{item.0.id}}">
+                                                
                                     </div>
+                                  
                                     <div class="modal-footer"><button class="btn btn-light" type="button"
                                             data-bs-dismiss="modal">cerrar</button><button class="btn btn-success"
                                             type="submit">prestar</button></div>
