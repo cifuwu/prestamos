@@ -26,8 +26,8 @@ def index(request):
     #
     # Descomentar y ejecutar sólo si se deben insertar datos de usuarios desde un .csv que se encuentre en la carpeta raíz
     #
-    #  arch = open('usuarios.csv')
-
+    # arch = open('usuarios.csv')
+    #
     # for linea in arch:
     #     linea = linea.split(',')
     #     usuario_ = linea[0]
