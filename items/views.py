@@ -12,6 +12,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.db.models import Avg, Count, Q
 from django.urls import reverse
 from django.utils import timezone
+from pyparsing import line
 
 from items.models import item , categoria, usuario, prestamo
 
@@ -26,20 +27,21 @@ def index(request):
     #
     # Descomentar y ejecutar sólo si se deben insertar datos de usuarios desde un .csv que se encuentre en la carpeta raíz
     #
-    # arch = open('usuarios.csv')
-    #
+    # arch = open('usuarios.csv', 'r')
+    
     # for linea in arch:
+    #     #print(linea)
     #     linea = linea.split(',')
-    #     usuario_ = linea[0]
-    #     rut_ = linea[1]
-    #     rol_ = linea[2]
-    #     correo_ = linea[3].replace('\n','')
+    #     usuario_ = linea[1].replace('"','')
+    #     rut_ = linea[0].replace('"','')
+    #     rol_ = linea[0].replace('"','')
+    #     correo_ = linea[4].replace('\n','').replace('"','')
 
     #     new_user = usuario(nombre = usuario_, rut=rut_, rol=rol_, correo=correo_)
     #     new_user.save()
 
-    #     print("\nnombre: " + str(usuario_) + '\n\tcorreo: '+ str(correo_) + '\n\trol: '+ str(rol_)+ '\n\trut: '+ str(rut_))
-
+    #     print("\nnombre: " + usuario_ + '\n\tcorreo: '+ correo_ + '\n\trol: '+ rol_+ '\n\trut: '+ rut_)
+    # arch.close()
 
     items = item.objects.order_by("disponible")
     usuarios = usuario.objects.all()
