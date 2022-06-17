@@ -37,6 +37,9 @@ class item(models.Model):
 
     def ver_categoria(self):
         return str(self.categoria)
+    
+    class Meta:
+        ordering = ['-nombre']
 
 
 
