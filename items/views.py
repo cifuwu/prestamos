@@ -210,8 +210,8 @@ def prestar(request):
             xd = caca, '',''
             arreglo.append(xd)
 
-    mensaje = str(elemento) + ' prestado', str(user)
-
+    mensaje = str(elemento) , 'prestado correctamente'
+    
     return render(request, 'index.html', {'items': arreglo, 'usuarios':usuarios, 'prestamos':prestamos, 'categorias':categorias, 'mensaje_prestado':mensaje})
 
 
