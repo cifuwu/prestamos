@@ -48,8 +48,10 @@ def filtro(request):
     chek_2 = request.POST.get('Check-2')
     chek_3 = request.POST.get('Check-3')
     chek_4 = request.POST.get('Check-4')
+    chek_5 = request.POST.get('Check-5')
+    chek_6 = request.POST.get('Check-6')
 
-    casillas = [chek_1, chek_2, chek_3, chek_4]
+    casillas = [chek_1, chek_2, chek_3, chek_4, chek_5, chek_6]
     print(casillas, '\n')
 
     if (chek_1 != None and chek_2 != None):
@@ -65,19 +67,31 @@ def filtro(request):
         items = item.objects.filter(categoria = '')
 
 
+    items_1 = []
+    items_2 = []
+    items_3 = []
+    items_4 = []
 
-    if (chek_3 == None and chek_4 != None):
-        items = items.filter(categoria__categoria = 'juego')
+    if (chek_4 != None ):
+        items_1 = items.filter(categoria__categoria = 'juego')
 
-    elif (chek_3 != None and chek_4 == None):
-        items = items.filter(categoria__categoria = 'computador')
+    if (chek_3 != None ):
+        items_2 = items.filter(categoria__categoria = 'computador')
 
-    elif (chek_3 == None and chek_4 == None):
-        items = items.filter(categoria = '')
+    if (chek_5 != None ):
+        items_3 = items.filter(categoria__categoria = 'raspberry')
+
+    if (chek_6 != None ):
+        items_4 = items.filter(categoria__categoria = 'otro')
+
+
+    items = list(items_1) + list(items_2) + list(items_3) + list(items_4)
 
     usuarios = usuario.objects.all()
     prestamos = prestamo.objects.all()
     categorias = categoria.objects.all()
+
+    print(items)
 
     arreglo = []
     for caca in items:

@@ -37,7 +37,12 @@
                         <tr>
                             <td>{{prestamo.usuario}}</td>
                             <td>{{prestamo.fecha_prestamo}}</td>
+
+                            {% if prestamo.fecha_devuelto %}
                             <td>{{prestamo.fecha_devuelto}}</td>
+                            {% else %}
+                            <td> </td>
+                            {% endif %}
 
                             <td class="d-lg-flex justify-content-lg-center"><button class="btn btn-secondary"
                                     type="button"
