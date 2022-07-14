@@ -30,7 +30,7 @@ def index(request):
     # arch = open('usuarios.csv', 'r')
     
     # for linea in arch:
-    #     #print(linea)
+    #     print(linea)
     #     linea = linea.split(',')
     #     usuario_ = linea[1].replace('"','')
     #     rut_ = linea[0].replace('"','')
@@ -43,7 +43,7 @@ def index(request):
     #     print("\nnombre: " + usuario_ + '\n\tcorreo: '+ correo_ + '\n\trol: '+ rol_+ '\n\trut: '+ rut_)
     # arch.close()
 
-    items = item.objects.order_by("disponible")
+    items = item.objects.order_by("disponible").order_by("id")
     usuarios = usuario.objects.all()
     prestamos = prestamo.objects.all()
     categorias = categoria.objects.all()

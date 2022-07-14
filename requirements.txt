@@ -2,4 +2,5 @@ Django
 python-dotenv
 whitenoise
 typing-extensions
+pyparsing
 psycopg2
