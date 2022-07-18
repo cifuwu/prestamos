@@ -91,6 +91,7 @@ WSGI_APPLICATION = 'prestamos.wsgi.application'
 
 # Configure Postgres database for local development
 #   Set these environment variables in the .env file for this project.  
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
