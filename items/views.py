@@ -43,7 +43,7 @@ def index(request):
     #     print("\nnombre: " + usuario_ + '\n\tcorreo: '+ correo_ + '\n\trol: '+ rol_+ '\n\trut: '+ rut_)
     # arch.close()
 
-    items = item.objects.order_by("disponible").order_by("id")
+    items = item.objects.order_by("disponible", "id")
     usuarios = usuario.objects.all()
     prestamos = prestamo.objects.all()
     categorias = categoria.objects.all()
