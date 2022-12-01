@@ -14,7 +14,7 @@
 
 ---
 
-para ejecutar, primero hayque crear el entorno virtual con:
+para ejecutar, primero hay que crear el entorno virtual con:
 
 ```
 python3 -m venv .venv
