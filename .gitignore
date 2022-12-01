@@ -2,9 +2,12 @@
 
 .venv
 
-#archivo sqlite3
+# archivo sqlite3
 
 db
 db.sqlite3
+
+# ds_store mac
+.DS_Store
 
 .vscode
