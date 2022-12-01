@@ -81,27 +81,27 @@ WSGI_APPLICATION = 'prestamos.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 
 # Configure Postgres database for local development
 #   Set these environment variables in the .env file for this project.  
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'primos-sj',
-        'HOST': 'cifumakers.postgres.database.azure.com',
-        'USER': 'cifuwu@cifumakers',
-        'PASSWORD': 'Se197323159', 
-        'OPTIONS': {"sslmode": "require"},
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'primos-sj',
+#         'HOST': 'cifumakers.postgres.database.azure.com',
+#         'USER': 'cifuwu@cifumakers',
+#         'PASSWORD': 'Se197323159', 
+#         'OPTIONS': {"sslmode": "require"},
+#     }
+# }
 
 
 
