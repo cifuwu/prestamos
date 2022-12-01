@@ -1,10 +1,10 @@
 # Sistema de préstamos
 
-Sistema de préstamos programado en python, de tipo biblioteca que permite la gestión de distintos items, permitiendo registrar la hora de préstamo, hora en la que se devolvió, y los datos del usuario al que fue prestado.
+###### Sistema de préstamos programado en python, de tipo biblioteca que permite la gestión de distintos items, permitiendo registrar la hora de préstamo, hora en la que se devolvió, y los datos del usuario al que fue prestado.
 
 ![1669861310513](image/README/1669861310513.png)
 
-El sistema permite agregar tantos items como sea necesario.
+###### El sistema permite agregar tantos items como sea necesario.
 
 ![1669861968296](image/README/1669861968296.png)
 
